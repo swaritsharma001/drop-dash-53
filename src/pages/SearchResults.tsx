@@ -1,10 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense, lazy } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Filter } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Lazy load ProductCard for better performance
+const ProductCard = lazy(() => import("@/components/ProductCard"));
+
+// Product loading skeleton
+const ProductSkeleton = () => (
+  <div className="space-y-3">
+    <Skeleton className="h-40 md:h-48 lg:h-52 w-full rounded-lg" />
+    <Skeleton className="h-4 w-3/4" />
+    <Skeleton className="h-3 w-1/2" />
+    <Skeleton className="h-8 w-full" />
+  </div>
+);
 
 // Import products from Home page data
 const products = [
@@ -247,7 +260,9 @@ const SearchResults = () => {
                   className="animate-scale-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <ProductCard {...product} />
+                  <Suspense fallback={<ProductSkeleton />}>
+                    <ProductCard {...product} />
+                  </Suspense>
                 </div>
               ))}
             </div>

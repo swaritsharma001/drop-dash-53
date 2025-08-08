@@ -1,10 +1,14 @@
-import { useState } from "react";
+
+import { useState, Suspense, lazy } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ProductCard from "@/components/ProductCard";
-import PromoBanner from "@/components/PromoBanner";
 import { Button } from "@/components/ui/button";
 import { Zap, Shield, Truck, Headphones } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Lazy load heavy components
+const ProductCard = lazy(() => import("@/components/ProductCard"));
+const PromoBanner = lazy(() => import("@/components/PromoBanner"));
 
 // Import products from centralized data
 import { products } from "@/utils/productData";
@@ -36,6 +40,16 @@ const features = [
   }
 ];
 
+// Product loading skeleton
+const ProductSkeleton = () => (
+  <div className="space-y-3">
+    <Skeleton className="h-40 md:h-48 lg:h-52 w-full rounded-lg" />
+    <Skeleton className="h-4 w-3/4" />
+    <Skeleton className="h-3 w-1/2" />
+    <Skeleton className="h-8 w-full" />
+  </div>
+);
+
 const Home = () => {
   const [visibleFashion, setVisibleFashion] = useState(4);
   const [visibleAll, setVisibleAll] = useState(8);
@@ -55,7 +69,9 @@ const Home = () => {
       <main className="flex-1">
         {/* Promotional Banner */}
         <section className="py-4 md:py-6">
-          <PromoBanner />
+          <Suspense fallback={<Skeleton className="h-20 w-full mx-4 rounded-lg" />}>
+            <PromoBanner />
+          </Suspense>
         </section>
 
         {/* Trending Fashion Section */}
@@ -77,7 +93,9 @@ const Home = () => {
                   className="animate-scale-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <ProductCard {...product} />
+                  <Suspense fallback={<ProductSkeleton />}>
+                    <ProductCard {...product} />
+                  </Suspense>
                 </div>
               ))}
             </div>
@@ -115,7 +133,9 @@ const Home = () => {
                   className="animate-scale-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <ProductCard {...product} />
+                  <Suspense fallback={<ProductSkeleton />}>
+                    <ProductCard {...product} />
+                  </Suspense>
                 </div>
               ))}
             </div>
