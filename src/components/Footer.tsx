@@ -11,10 +11,13 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 premium-gradient rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">E</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">EliteShop</span>
+              <img
+                src="/lovable-uploads/9c6855b1-b5f1-42e1-9cb3-494ac3adba6a.png"
+                alt="Luke & Fashion logo"
+                className="w-8 h-8 rounded-full object-cover shadow-premium"
+                loading="lazy"
+              />
+              <span className="text-xl font-bold text-foreground">Luke &amp; Fashion</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Your premium destination for quality products. We deliver excellence with every purchase.
@@ -105,7 +108,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-muted-foreground text-sm">
-            © 2024 EliteShop. All rights reserved.
+            © 2025 Luke &amp; Fashion. All rights reserved.
           </p>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <span>Secure Payment</span>

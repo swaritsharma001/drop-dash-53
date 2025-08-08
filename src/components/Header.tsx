@@ -28,10 +28,13 @@ const Header = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-7 h-7 md:w-8 md:h-8 premium-gradient rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-base md:text-lg">E</span>
-              </div>
-              <span className="text-lg md:text-xl font-bold text-foreground">EliteShop</span>
+              <img
+                src="/lovable-uploads/9c6855b1-b5f1-42e1-9cb3-494ac3adba6a.png"
+                alt="Luke & Fashion logo"
+                className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover shadow-premium"
+                loading="lazy"
+              />
+              <span className="text-lg md:text-xl font-bold text-foreground">Luke &amp; Fashion</span>
             </Link>
 
             {/* Search Bar - Hidden on Mobile */}
